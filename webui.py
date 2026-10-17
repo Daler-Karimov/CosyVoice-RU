@@ -84,7 +84,7 @@ def clone_voice(tts_text, prompt_audio, prompt_text, speed):
             prompt_text = transcribe_res.get("text", "").strip()
             detected_lang = transcribe_res.get("language", "ru")
             print(f"Распознан текст образца ({detected_lang}): {prompt_text}")
-            auto_transcribed_note = f"\n📝 Текст образца распознан автоматически ({detected_lang}): «{prompt_text}»"
+            auto_transcribed_note = f"\n[Whisper] Текст образца распознан автоматически ({detected_lang}): «{prompt_text}»"
         except Exception as e:
             print(f"Ошибка Whisper: {e}")
             prompt_text = ""
@@ -120,7 +120,7 @@ def clone_voice(tts_text, prompt_audio, prompt_text, speed):
         rtf = elapsed / max(duration, 0.01)
 
         status = (
-            f"✅ Успешно! Сгенерировано {duration:.2f} сек. речи за {elapsed:.2f} сек. "
+            f"Успешно! Сгенерировано {duration:.2f} сек. речи за {elapsed:.2f} сек. "
             f"(RTF: {rtf:.2f}) на RTX 5080.{auto_transcribed_note}"
         )
         return (sr, audio_np), status
@@ -128,12 +128,12 @@ def clone_voice(tts_text, prompt_audio, prompt_text, speed):
         err_msg = str(e)
         print(f"Ошибка инференса: {err_msg}")
         gr.Warning(f"Ошибка при синтезе: {err_msg}")
-        return None, f"❌ Ошибка: {err_msg}"
+        return None, f"Ошибка: {err_msg}"
 
 with gr.Blocks(title="CosyVoice 3.0 — Клонирование голоса") as demo:
     gr.Markdown(
         """
-        # 🎭 CosyVoice 3.0 — Локальное клонирование голоса (Voice Cloning)
+        # CosyVoice 3.0 — Локальное клонирование голоса (Voice Cloning)
         Диффузионная нейросеть нового поколения для клонирования голоса с аппаратным ускорением на **NVIDIA GeForce RTX 5080**.
         """
     )
@@ -154,7 +154,7 @@ with gr.Blocks(title="CosyVoice 3.0 — Клонирование голоса") 
                 value=SAMPLE_AUDIO
             )
 
-            with gr.Accordion("⚙️ Настройки и текст образца", open=False):
+            with gr.Accordion("Настройки и текст образца", open=False):
                 with gr.Row():
                     prompt_text_input = gr.Textbox(
                         label="Текст, звучащий в образце голоса (опционально)",
@@ -162,7 +162,7 @@ with gr.Blocks(title="CosyVoice 3.0 — Клонирование голоса") 
                         lines=2,
                         scale=4
                     )
-                    transcribe_btn = gr.Button("🔍 Распознать", scale=1)
+                    transcribe_btn = gr.Button("Распознать", scale=1)
                 
                 speed_slider = gr.Slider(
                     label="Скорость речи",
@@ -172,7 +172,7 @@ with gr.Blocks(title="CosyVoice 3.0 — Клонирование голоса") 
                     step=0.05
                 )
 
-            generate_btn = gr.Button("✨ Клонировать голос и сгенерировать речь", variant="primary", size="lg")
+            generate_btn = gr.Button("Клонировать голос и сгенерировать речь", variant="primary", size="lg")
 
         with gr.Column(scale=5):
             audio_output = gr.Audio(
@@ -188,7 +188,7 @@ with gr.Blocks(title="CosyVoice 3.0 — Клонирование голоса") 
             
             gr.Markdown(
                 """
-                ### 💡 Советы для идеального результата:
+                ### Советы для идеального результата:
                 1. **Качество записи:** образец без фоновой музыки, посторонних шумов и сильного эха дает наилучшее сходство.
                 2. **Длина образца:** оптимально **5–12 секунд** связной речи.
                 3. **Автоматический Whisper:** модель автоматически распознает произнесенный текст в образце для точного акустического выравнивания.
