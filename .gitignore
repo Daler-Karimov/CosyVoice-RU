@@ -1,0 +1,44 @@
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Model weights and checkpoints (huge files)
+pretrained_models/
+piper_voices/
+.cache/
+*.onnx
+*.pt
+*.bin
+*.safetensors
+*.plan
+*.zip
+
+# Audio recordings and test outputs
+*.wav
+*.mp3
+*.flac
+*.ogg
+temp_*
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Logs and scratch text files
+whisper_result*.txt
+transcription*.txt
+trans_clean.txt
+*.log
+
+# IDE and OS files
+.idea/
+.vscode/
+*.swp
+*.swo
+Thumbs.db
+Desktop.ini

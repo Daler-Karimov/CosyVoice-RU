@@ -1,0 +1,37 @@
+# PyTorch with CUDA 12.8 support (or use your system's CUDA version)
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch>=2.4.0
+torchaudio>=2.4.0
+
+# Exact compatible transformers & diffusers versions (prevents KV-cache and hallucination bug)
+transformers==4.51.3
+diffusers==0.29.0
+huggingface-hub==0.36.2
+tokenizers==0.21.4
+
+# WebUI and Speech Recognition
+gradio>=5.0.0
+openai-whisper>=20231117
+soundfile>=0.12.1
+
+# CosyVoice core dependencies
+conformer==0.3.2
+HyperPyYAML==1.2.3
+inflect>=7.3.1
+librosa>=0.10.2
+lightning>=2.2.4
+matplotlib>=3.7.5
+modelscope>=1.20.0
+networkx>=3.1
+omegaconf>=2.3.0
+onnx>=1.16.0
+onnxruntime>=1.18.0
+pyarrow>=18.1.0
+pyworld>=0.3.4
+rich>=13.7.1
+wetext>=0.0.4
+wget>=3.2
+x-transformers>=2.11.24
+ruamel.yaml>=0.18.6
+fastapi>=0.115.0
+uvicorn>=0.30.0
